@@ -1,0 +1,195 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({IntroText = "Mfordusu",Name = "Mfordusu Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "Cathe is impostor sussy among us ur under fbi s3x oh mey gad"})
+
+--menü
+--Value lar
+_G.ESP = true
+
+--function lar
+function ESP()
+    while _G.ESP == true do
+
+local players = game.Players:GetPlayers()
+
+for i,v in pairs(players) do
+ local esp = Instance.new("Highlight")
+ esp.Name = v.Name
+ esp.FillTransparency = 1
+ esp.FillColor = Color3.new(0.750635, 0.452006, 0.791011)
+ esp.OutlineColor = Color3.new(255, 255, 255)
+ esp.OutlineTransparency = 0
+ esp.Parent = v.Character
+end
+wait(99999999999999999999999)
+end
+end
+--menü
+--buton
+local TPTab = Window:MakeTab({
+	Name = "Teleport",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+local CombatTab = Window:MakeTab({
+	Name = "Combat",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+local PlayerTab = Window:MakeTab({
+	Name = "Player",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+PlayerTab:AddToggle({
+	Name = "ESP",
+	Default = false,
+	Callback = function(Value)
+_G.ESP = Value 
+ESP() 
+    end
+})
+TPTab:AddButton({
+	Name = "XP Area",
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-463.880402, 311.015594, -1243.73438, 0.105849802, 2.43348941e-09, 0.994382143, -3.19528737e-10, 1, -2.41322429e-09, -0.994382143, -6.22942808e-11, 0.105849)
+  	end    
+})
+TPTab:AddButton({
+	Name = "Ruby Area",
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1120.46619, -119.987976, 1194.51709, -0.700639129, -1.26913785e-10, -0.713515937, -7.86718579e-10, 1, 5.94649607e-10, 0.713515937, 9.77970926e-10, -0.700)
+  	end    
+})
+TPTab:AddButton({
+	Name = "Old God",
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1137.04224, -209.740585, -758.336975, 0.930316567, 9.66422276e-10, 0.366757601, 3.2337939e-09, 1, -1.0837879e-08, -0.366757601, 1.12686758e-08, 0.93031656)
+  	end    
+})
+PlayerTab:AddButton({
+	Name = "GodMode",
+	Callback = function()
+local Player = game:GetService("Players").LocalPlayer
+game:GetService("Workspace").Critters[Player.Name].HumanoidRootPart:Destroy()
+  	end    
+})
+TPTab:AddButton({
+	Name = "Secret Cave",
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(594.912476, -47.2334595, -268.907074, -0.792794824, 2.08975859e-09, 0.609489024, -1.20279875e-08, 1, -1.90741467e-08, -0.609489024, -2.24528058e-08, -0.792794)
+  	end    
+})
+PlayerTab:AddTextbox({
+	Name = "Name Changer",
+	Default = "Write Name",
+	TextDisappear = false,
+	Callback = function(Value)
+-- credits to 07granddad for making this
+while game:IsLoaded() == false do wait() end
+local fakeplr = {["Name"] = (Value), ["UserId"] = "3742966445"}
+local lplr = game:GetService("Players").LocalPlayer
+
+local function plrthing(obj, property)
+    for i,v in pairs(game:GetService("Players"):GetChildren()) do
+        if v ~= lplr then
+        else
+            obj[property] = obj[property]:gsub(v.Name, fakeplr["Name"])
+            obj[property] = obj[property]:gsub(v.DisplayName, fakeplr["Name"])
+            obj[property] = obj[property]:gsub(v.UserId, fakeplr["UserId"])
+        end
+    end
+end
+
+local function newobj(v)
+    if v:IsA("TextLabel") or v:IsA("TextButton") then
+        plrthing(v, "Text")
+        v:GetPropertyChangedSignal("Text"):connect(function()
+            plrthing(v, "Text")
+        end)
+    end
+    if v:IsA("ImageLabel") then
+        plrthing(v, "Image")
+        v:GetPropertyChangedSignal("Image"):connect(function()
+            plrthing(v, "Image")
+        end)
+    end
+end
+
+for i,v in pairs(game:GetDescendants()) do
+    newobj(v)
+end
+game.DescendantAdded:connect(newobj)
+end	
+})
+CombatTab:AddTextbox({
+	Name = "Kill Aura (auto clicker)",
+	Default = "AutoCicker toggle keybind (type)",
+	TextDisappear = false,
+	Callback = function(Value)
+local time = 0.001 --decrease if too slow increase if too fast
+
+click = false
+m = game.Players.LocalPlayer:GetMouse()
+m.KeyDown:connect(function(key)
+if key == (Value) then
+if click == true then click = false
+elseif
+click == false then click = true
+
+while click == true do 
+wait(time)
+mouse1click()
+end
+end
+end
+end)
+end	
+})
+local TargetWalkspeed
+PlayerTab:AddSlider({
+	Name = "Speed",
+	Min = 0,
+	Max = 200,
+	Default = 0,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	Callback = function(Value)
+		TargetWalkspeed = Value
+	end    
+})
+PlayerTab:AddButton({
+	Name = "INF Jump",
+	Callback = function()
+local InfiniteJumpEnabled = true
+game:GetService("UserInputService").JumpRequest:connect(function()
+	if InfiniteJumpEnabled then
+		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+	end
+end)
+  	end    
+})
+CombatTab:AddButton({
+	Name = "Tp Aura",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/LOFICAT1/rela/main/relv2-obfuscated.lua"))()
+end   
+})
+game:GetService("RunService").RenderStepped:Connect(function()
+    pcall(function()
+        if game.Players.LocalPlayer.Character.Humanoid.MoveDirection.Magnitude > 0 then
+            game.Players.LocalPlayer.Character:TranslateBy(game.Players.LocalPlayer.Character.Humanoid.MoveDirection * TargetWalkspeed/50)
+        end
+    end)
+end)
+local CreditsTab = Window:MakeTab({
+	Name = "Developer",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = true
+})
+CreditsTab:AddParagraph("Mfordusu Pro","Tsk kullandigin icin")
+
+CreditsTab:AddParagraph("Discord","Yakında!!")
+
+OrionLib:Init()
+
+task.wait(2)
